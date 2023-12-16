@@ -1,6 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://brt11lbnebfl7"]
+[gd_scene load_steps=5 format=3 uid="uid://brt11lbnebfl7"]
 
 [ext_resource type="Script" path="res://effect_capture_to_wav.gd" id="1_8b4i4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ayo6m"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_58q5u"]
+font_color = Color(1, 0, 0.329412, 1)
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_n7l6k"]
 
@@ -25,6 +31,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "AudioEffectCapture to Wav"
+label_settings = SubResource("LabelSettings_ayo6m")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Be careful this example need mic and record all the time.see below mic icon(when use windows)"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -46,13 +60,7 @@ text = "Save Wav res://capture.wav"
 [node name="Status" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Monitoring.."
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-text = "Be careful this example need mic and record all the time.see below mic icon(when use windows)"
+label_settings = SubResource("LabelSettings_58q5u")
 
 [node name="AudioStreamRecord" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_n7l6k")
