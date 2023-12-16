@@ -75,7 +75,7 @@ func _on_record_button_pressed():
 		#$SaveButton.disabled = false
 		
 		find_child("RecordButton").text = "Record"
-		find_child("Status").text = ""
+		find_child("Status").text = "Monitoring.."
 		is_recording = false
 		wav.set_data(wav_bytes)
 	else:
