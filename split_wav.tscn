@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl2rw6ttwjrjg"]
+
+[ext_resource type="Script" path="res://split_wav.gd" id="1_6y06f"]
+[ext_resource type="AudioStream" uid="uid://jcasha327iva" path="res://files/713283.wav" id="2_grgav"]
+
+[node name="SplitWav" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6y06f")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="StartLineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "End"
+
+[node name="EndLineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TrimButton" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Trim"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_grgav")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/TrimButton" to="." method="_on_trim_button_pressed"]
