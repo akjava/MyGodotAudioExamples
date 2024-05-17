@@ -16,12 +16,12 @@ var wav_bytes := PackedByteArray()
 
 
 func _ready():
-	var idx = AudioServer.get_bus_index("Record") #Record bus must be exist in default_bus_layout.tres(add Record and Capture Effect)
-	assert(idx != -1, "Bus '%s' not found.add manually and rename it from below Audio-Tab" % "Record")
-	check_bus_effect(idx,0,"AudioEffectCapture")
+	var record_bus_index = AudioServer.get_bus_index("Record") #Record bus must be exist in default_bus_layout.tres(add Record and Capture Effect)
+	assert(record_bus_index != -1, "Bus '%s' not found.add manually and rename it from below Audio-Tab" % "Record")
+	check_bus_effect(record_bus_index,0,"AudioEffectCapture")
 			
-	audio_capture = AudioServer.get_bus_effect(idx, 0)
-	AudioServer.set_bus_mute(idx,true)#avoid Mic-Echo
+	audio_capture = AudioServer.get_bus_effect(record_bus_index, 0)
+	AudioServer.set_bus_mute(record_bus_index,true)#avoid Mic-Echo
 	
 	wav = AudioStreamWAV.new()
 	wav.format = AudioStreamWAV.FORMAT_16_BITS
@@ -32,12 +32,16 @@ func _ready():
 	
 	
 func check_bus_effect(bus_index: int, effect_slot: int, effect_class_name: String):
+	var count = AudioServer.get_bus_effect_count (bus_index)
+	if count <= effect_slot:
+		push_error("Bus Effect empty or smaller than index effect-size =%s effect_slot = %s.Add effect manually from below audio-tab"%[count,effect_slot])
+		return
 	var effect = AudioServer.get_bus_effect(bus_index, effect_slot)
 	if effect == null:
-		print("%s not exist in Bus %s slot %s"%[effect_class_name,bus_index,effect_slot])
+		push_error("%s not exist in Bus %s slot %s"%[effect_class_name,bus_index,effect_slot])
 		return false
 	elif  effect.get_class() != effect_class_name:
-		print("Effect is not %s in Bus %s slot %s" % [effect_class_name,bus_index,effect_slot])
+		push_error("Effect is not %s in Bus %s slot %s.there are %s" % [effect_class_name,bus_index,effect_slot,effect.get_class()])
 		return false
 	else:
 		var effect_enabled = AudioServer.is_bus_effect_enabled(bus_index, effect_slot)
