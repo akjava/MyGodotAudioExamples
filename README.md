@@ -1,5 +1,5 @@
 # MyGodotAudioExamples
-a small godot audio examples.
+a small godot audio examples.Be careful to use there are better official way.I prefer writing code than search it.
 ## LICENSE
 MIT
 ## Audio Effect Capture to wav
