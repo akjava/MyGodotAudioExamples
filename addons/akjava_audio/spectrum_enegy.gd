@@ -1,4 +1,4 @@
-# https://github.com/akjava/MyGodotAudioExamples
+# https://github.com/akjava/MyGodotAudioExamples (public)
 class_name SppectrumToEnergy extends Control
 
 var _spectrum

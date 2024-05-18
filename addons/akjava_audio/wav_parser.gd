@@ -1,3 +1,5 @@
+# https://github.com/akjava/MyGodotAudioExamples (public)
+
 class_name WavParser extends Object
 
 # This function attempts to parse a WAV file and print its basic details.
