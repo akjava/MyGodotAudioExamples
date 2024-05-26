@@ -10,6 +10,7 @@ class_name WavUtils
 static func generate_silence(duration_sec:float,is_stereo:bool,mix_rate:int,format = AudioStreamWAV.FORMAT_16_BITS)->PackedByteArray:
 	var stereo_size = 2 if is_stereo else 1
 	var byte_size = 1 if format == AudioStreamWAV.FORMAT_8_BITS  else 2
+	# TODO check other
 	
 	var size = int(mix_rate * duration_sec) * stereo_size * byte_size
 	var array = PackedByteArray()
