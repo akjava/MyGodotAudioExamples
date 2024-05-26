@@ -115,3 +115,9 @@ func hz_step_changed():
 	# init dic
 	for i in spectram_ranges.size():
 		mag_dics.append({})
+
+
+func _on_button_pressed():
+	var control = find_child("Control")
+	var img = control.get_viewport().get_texture().get_image()
+	img.save_jpg("tmp.jpg")
